@@ -27,7 +27,7 @@ class AddressAdmin(admin.ModelAdmin):
 admin.site.register(Address, AddressAdmin)
 
 class ShiftOfferAdmin(admin.ModelAdmin):
-    # Customize as needed
-    pass
+    #Customize as needed
+   pass
 
 admin.site.register(ShiftOffer, ShiftOfferAdmin)
