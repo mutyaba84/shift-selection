@@ -1,22 +1,38 @@
-<!-- templates/base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Project Title</title>
-    <!-- Include your CSS stylesheets, scripts, etc. -->
+    <title>{% block title %}Your Project Title{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add your project-specific CSS and JavaScript links here -->
   </head>
   <body>
-    <header>
-      <!-- Your header content -->
+    <header class="bg-dark text-light p-4">
+      <h1>Your Project Header</h1>
+      <!-- Navigation using Bootstrap Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Navbar content -->
+        <!-- Add your navigation links or menu here -->
+      </nav>
     </header>
 
-    <main>{% block content %} {% endblock %}</main>
+    <main class="container mt-4">{% block content %}{% endblock %}</main>
 
-    <footer>
-      <!-- Your footer content -->
+    <footer class="bg-dark text-light p-4 mt-4">
+      <p class="text-center">
+        &copy; {% now "Y" %} Your Project. All rights reserved.
+      </p>
     </footer>
+
+    <!-- Add your additional scripts or footers here -->
   </body>
 </html>
