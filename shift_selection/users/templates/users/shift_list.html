@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Shift List</h1>
+
+{% if user_profile.is_employer and not user_profile.subscription_enabled %}
+<p>
+  Employer subscription is not enabled. You can use the service without charge.
+</p>
+{% elif user_profile.is_employer and user_profile.subscription_enabled and not
+user_profile.subscription_valid_until %}
+<p>Employer subscription is active. Redirect to payment view to subscribe.</p>
+{% elif user_profile.is_employer and user_profile.subscription_enabled and
+user_profile.subscription_valid_until and user_profile.subscription_valid_until
+< timezone.now().date %}
+<p>Subscription has expired. Redirect or show an error page.</p>
+{% endif %} {% if user_profile.subscription_enabled %}
+<form method="post" action="{% url 'shift_list' %}">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+{% endif %}
+
+<h2>Shifts</h2>
+{% if next_available_shift %}
+<p>Next available shift: {{ next_available_shift }}</p>
+{% else %}
+<p>No available shifts currently.</p>
+{% endif %}
+
+<h2>Shift Offers</h2>
+<h3>Received</h3>
+{% for offer in shift_offers_received %}
+<p>{{ offer }}</p>
+{% empty %}
+<p>No received offers.</p>
+{% endfor %}
+
+<h3>Sent</h3>
+{% for offer in shift_offers_sent %}
+<p>{{ offer }}</p>
+{% empty %}
+<p>No sent offers.</p>
+{% endfor %} {% endblock %}

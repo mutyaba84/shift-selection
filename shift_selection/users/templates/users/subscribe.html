@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Subscribe</h1>
+
+{% if user_profile.subscription_enabled %}
+<p>Your subscription is active. No need to subscribe.</p>
+{% else %}
+<form method="post" action="{% url 'subscribe' %}">
+  {% csrf_token %}
+  <!-- Add subscription form fields here -->
+  <button type="submit">Subscribe</button>
+</form>
+{% endif %} {% endblock %}
